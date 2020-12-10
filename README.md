@@ -46,8 +46,9 @@ Without OverloadedFunction, the code would either need 2 separate methods or inc
 - The first parameter to `OverloadedFunction.prototype.add` is an array of constructors that represents the signature of an overloaded method
     - For example, a value of `[Number, String]` means we expect the function to be called with 2 parameters: a number followed by a string. The order matters.
     - This DOES look up the prototype chain (e.g. specifying `Object` will also match an `Array`, since all arrays inherit from `Object`.
-    - Precedence is based on insertion order, not specificity. This means that if you want to handle arrays differently from objects, add the array method first.
-    - `null` and `undefined` are treated as equal (both match `null` and `undefined`)
+    - Precedence is based on insertion order, not specificity. 
+        - If you want to handle arrays differently from objects, add the method that deals with arrays to the function first.
+        - When OverloadedFunction sees `null` or `undefined`, it will not consider that a mismatch when selecting a function to call. 
     - To match a call where no arguments are given, use an empty array
 - The second parameter to `OverloadedFunction.prototype.add` is the function to be called when the arguments match the expected types
 - `OverloadedFunction.prototype.add` returns the OverloadedFunction object it is attached to, allowing you to chain calls (as seen in the example)

@@ -28,11 +28,8 @@ OverloadedFunction.matches = function (args, signature) {
 
     // Go through arguments, returning false if we find a mismatch
     for (let i = 0; i < args.length; i++) {
-        if (args[i] == null && signature[i] == null) {
+        if (args[i] == null) {
             continue;
-        }
-        if (args[i] == null || signature[i] == null) {
-            return false;
         }
         if (!(args[i].constructor === signature[i] || args[i] instanceof signature[i])) {
             return false;
